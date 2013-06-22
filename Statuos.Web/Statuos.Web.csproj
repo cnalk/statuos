@@ -46,8 +46,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.1.0\lib\net35\Castle.Core.dll</HintPath>
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Facilities.Logging">
       <HintPath>..\packages\Castle.LoggingFacility.3.1.0\lib\net40\Castle.Facilities.Logging.dll</HintPath>
@@ -55,8 +56,9 @@
     <Reference Include="Castle.Services.Logging.Log4netIntegration">
       <HintPath>..\packages\Castle.Core-log4net.3.1.0\lib\net40\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.1.0\lib\net40\Castle.Windsor.dll</HintPath>
+    <Reference Include="Castle.Windsor, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
@@ -68,6 +70,15 @@
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor">
+      <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\containers\castle\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -495,6 +506,10 @@
     <ProjectReference Include="..\Statuos.Data\Statuos.Data.csproj">
       <Project>{7f372f3d-eba9-47af-9aa4-dd21577df470}</Project>
       <Name>Statuos.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Statuos.Messages\Statuos.Messages.csproj">
+      <Project>{2985f280-7372-458f-aa2d-f6874d8492d8}</Project>
+      <Name>Statuos.Messages</Name>
     </ProjectReference>
     <ProjectReference Include="..\Statuos.Service\Statuos.Service.csproj">
       <Project>{5db115b9-8b01-49c9-b9af-bf93251a7bb6}</Project>

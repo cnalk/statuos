@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statuos.Service", "Statuos.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statuos.Test", "Statuos.Test\Statuos.Test.csproj", "{625B9C40-F45B-4AD4-A82B-1C1B48F809B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statuos.Import.Backend", "Statuos.Import.Backend\Statuos.Import.Backend.csproj", "{4D73409B-7D50-4039-89B5-1BF3581C9F52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statuos.Messages", "Statuos.Messages\Statuos.Messages.csproj", "{2985F280-7372-458F-AA2D-F6874D8492D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{A8B528F3-E5BE-4848-BF00-EBDE0600E63A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,8 +43,20 @@ Global
 		{625B9C40-F45B-4AD4-A82B-1C1B48F809B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{625B9C40-F45B-4AD4-A82B-1C1B48F809B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{625B9C40-F45B-4AD4-A82B-1C1B48F809B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D73409B-7D50-4039-89B5-1BF3581C9F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D73409B-7D50-4039-89B5-1BF3581C9F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D73409B-7D50-4039-89B5-1BF3581C9F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D73409B-7D50-4039-89B5-1BF3581C9F52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2985F280-7372-458F-AA2D-F6874D8492D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2985F280-7372-458F-AA2D-F6874D8492D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2985F280-7372-458F-AA2D-F6874D8492D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2985F280-7372-458F-AA2D-F6874D8492D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2985F280-7372-458F-AA2D-F6874D8492D8} = {A8B528F3-E5BE-4848-BF00-EBDE0600E63A}
+		{4D73409B-7D50-4039-89B5-1BF3581C9F52} = {A8B528F3-E5BE-4848-BF00-EBDE0600E63A}
 	EndGlobalSection
 EndGlobal

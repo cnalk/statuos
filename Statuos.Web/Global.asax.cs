@@ -1,5 +1,6 @@
 ﻿using Castle.Windsor;
 using Castle.Windsor.Installer;
+using NServiceBus;
 using Statuos.Web.Areas.Admin.Models;
 using Statuos.Web.Infrastructure.AutoMapper;
 using Statuos.Web.Infrastructure.Helpers.Binders;
@@ -35,6 +36,15 @@ namespace Statuos.Web
             AutoMapperConfiguration.Configure(_container);
             ModelBinders.Binders.Add(typeof(ProjectViewModel), new ConcreteViewModelBinder());
             ModelBinders.Binders.Add(typeof(TaskViewModel), new ConcreteViewModelBinder());
+
+            Configure.With()
+                .CastleWindsorBuilder(_container)
+                .Log4Net()
+                .XmlSerializer()
+                .MsmqTransport()
+                .UnicastBus()
+                .CreateBus()
+                .Start();
         }
 
         private void BootstrapContainer()

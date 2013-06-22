@@ -1,4 +1,6 @@
-﻿using Statuos.Data;
+﻿using NServiceBus;
+using Statuos.Data;
+using Statuos.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +11,24 @@ namespace Statuos.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public IBus Bus { get; set; }
 
         public ActionResult Index()
-        {            
+        {
+
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             return View();
         }
 
         public ActionResult About()
         {
+
+            Bus.Send(new ImportTasksMessage
+            {
+                Id = Guid.NewGuid(),
+                FileLocation = "C:/",
+                UserId = 1
+            });
             ViewBag.Message = "Your app description page.";
 
             return View();
