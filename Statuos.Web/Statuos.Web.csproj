@@ -166,10 +166,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BulkTaskImportController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\BulkTaskImportSummaryView.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Infrastructure\Installers\LoggingInstaller.cs" />
     <Compile Include="Infrastructure\Installers\TaskInstaller.cs" />
@@ -374,6 +376,7 @@
     <Content Include="Areas\Admin\Views\Customer\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Project\_Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BulkTaskImport\Index.cshtml" />
     <None Include="Properties\PublishProfiles\statuos.pubxml" />
     <None Include="Properties\PublishProfiles\statweb.pubxml" />
     <Content Include="Scripts\DataTables\docs\media\js\doc.js" />
