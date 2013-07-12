@@ -51,8 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateCustomerHandler.cs" />
+    <Compile Include="CreateProjectHandler.cs" />
+    <Compile Include="CreateTaskMessage.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="ImportTasksMessageHandler.cs" />
+    <Compile Include="ImportTaskHandler.cs" />
+    <Compile Include="ImportTaskSagaData.cs" />
+    <Compile Include="ImportTasksSaga.cs" />
+    <Compile Include="ImportTaskTimeout.cs" />
+    <Compile Include="ITaskImport.cs" />
+    <Compile Include="ITaskImportFailed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
