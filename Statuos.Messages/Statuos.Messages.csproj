@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImportCustomer.cs" />
+    <Compile Include="ImportProject.cs" />
+    <Compile Include="ImportTask.cs" />
     <Compile Include="ImportTasksMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

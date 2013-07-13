@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Statuos.Import.Backend
 {
-    public class CreateCustomerHandler
+    public class ITaskImported
     {
+        public Guid ImportId { get; set; }
     }
 }

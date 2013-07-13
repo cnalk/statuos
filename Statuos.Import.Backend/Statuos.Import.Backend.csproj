@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\log4net.dll</HintPath>
     </Reference>
@@ -51,15 +54,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateCustomerHandler.cs" />
-    <Compile Include="CreateProjectHandler.cs" />
+    <Compile Include="ImportCustomerHandler.cs" />
+    <Compile Include="ImportProjectHandler.cs" />
     <Compile Include="CreateTaskMessage.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="ImportTaskHandler.cs" />
+    <Compile Include="ImportTaskRecord.cs" />
     <Compile Include="ImportTaskSagaData.cs" />
     <Compile Include="ImportTasksSaga.cs" />
     <Compile Include="ImportTaskTimeout.cs" />
-    <Compile Include="ITaskImport.cs" />
+    <Compile Include="ITaskImported.cs" />
     <Compile Include="ITaskImportFailed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,8 +71,17 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Statous.Domain\Statuos.Domain.csproj">
+      <Project>{5c300d04-2415-4ca3-9ce6-869ce18691a7}</Project>
+      <Name>Statuos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Statuos.Data\Statuos.Data.csproj">
+      <Project>{7f372f3d-eba9-47af-9aa4-dd21577df470}</Project>
+      <Name>Statuos.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Statuos.Messages\Statuos.Messages.csproj">
       <Project>{2985f280-7372-458f-aa2d-f6874d8492d8}</Project>
       <Name>Statuos.Messages</Name>
