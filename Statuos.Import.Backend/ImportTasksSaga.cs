@@ -29,7 +29,7 @@ namespace Statuos.Import.Backend
             RequestTimeout(TimeSpan.FromHours(24), new ImportTaskTimeout());
 
             var csv = new CsvReader(File.OpenText(message.FileLocation));
-            var records = csv.GetRecords<ImportTaskRecord>();
+            var records = csv.GetRecords<ImportTaskRecord>().ToList();
 
             var customers = records.Select(c => c.CustomerName).Distinct();
             var projects = records.Select(c => new { Customer = c.CustomerName, Project = c.ProjectName }).Distinct();

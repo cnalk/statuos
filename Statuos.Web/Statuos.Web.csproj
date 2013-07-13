@@ -171,6 +171,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\BulkTaskImport.cs" />
     <Compile Include="Areas\Admin\Models\BulkTaskImportSummaryView.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Infrastructure\Installers\LoggingInstaller.cs" />
@@ -377,6 +378,7 @@
     <Content Include="Areas\Admin\Views\User\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\Project\_Create.cshtml" />
     <Content Include="Areas\Admin\Views\BulkTaskImport\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BulkTaskImport\Create.cshtml" />
     <None Include="Properties\PublishProfiles\statuos.pubxml" />
     <None Include="Properties\PublishProfiles\statweb.pubxml" />
     <Content Include="Scripts\DataTables\docs\media\js\doc.js" />
