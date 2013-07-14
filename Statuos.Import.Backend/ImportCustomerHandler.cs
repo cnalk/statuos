@@ -15,7 +15,10 @@ namespace Statuos.Import.Backend
         public IRepository<Customer> CustomerRepository { get; set; }
         public void Handle(ImportCustomer message)
         {
-            CustomerRepository.Add(new Customer { Code = "", Name = message.Name });
+            IStatuosContext context = new StatuosContext();
+            context.Customers.Add(new Customer { Name = message.Name, Code = message.Code });
+            context.Save();
+            context.Dispose();
         }
     }
 }

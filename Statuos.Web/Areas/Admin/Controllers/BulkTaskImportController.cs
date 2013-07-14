@@ -40,7 +40,7 @@ namespace Statuos.Web.Areas.Admin.Controllers
         public ActionResult Create(BulkTaskImport bulkTaskImport)
         {
             Bus.Send(new ImportTasksMessage { FileLocation = bulkTaskImport.FileName, Id = Guid.NewGuid(), UserId = _userRepository.All.Where(u => u.UserName == User.Identity.Name).SingleOrDefault().Id });
-            return View("Index");
+            return RedirectToAction("Index");
         }
        
 

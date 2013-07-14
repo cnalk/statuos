@@ -33,6 +33,10 @@
     <Reference Include="CsvHelper">
       <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\log4net.dll</HintPath>
     </Reference>
@@ -46,7 +50,9 @@
       <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,8 +69,6 @@
     <Compile Include="ImportTaskSagaData.cs" />
     <Compile Include="ImportTasksSaga.cs" />
     <Compile Include="ImportTaskTimeout.cs" />
-    <Compile Include="ITaskImported.cs" />
-    <Compile Include="ITaskImportFailed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

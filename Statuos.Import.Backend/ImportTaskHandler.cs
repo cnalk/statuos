@@ -10,9 +10,10 @@ namespace Statuos.Import.Backend
 {
     public class ImportTaskHandler : IHandleMessages<ImportTask>
     {
+        public IBus Bus { get; set; }
         public void Handle(ImportTask message)
         {
-            throw new NotImplementedException();
+            Bus.Publish<ITaskImportSucceeded>(m => { m.ImportId = message.ImportId; });
         }
     }
 }

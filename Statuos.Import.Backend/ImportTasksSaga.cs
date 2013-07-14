@@ -12,7 +12,7 @@ namespace Statuos.Import.Backend
 {
     public class ImportTasksSaga : Saga<ImportTaskSagaData>, 
                                     IAmStartedByMessages<ImportTasksMessage>, 
-                                    IHandleMessages<ITaskImported>, 
+                                    IHandleMessages<ITaskImportSucceeded>, 
                                     IHandleMessages<ITaskImportFailed>, 
                                     IHandleTimeouts<ImportTaskTimeout>
     {
@@ -20,36 +20,38 @@ namespace Statuos.Import.Backend
 
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<ITaskImported>(s => s.ImportId, m => m.ImportId);
+            ConfigureMapping<ITaskImportSucceeded>(s => s.ImportId, m => m.ImportId);
             ConfigureMapping<ITaskImportFailed>(s => s.ImportId).ToSaga(s => s.ImportId);
         }
 
         public void Handle(ImportTasksMessage message)
         {
+            Data.ImportId = message.Id;
+            
             RequestTimeout(TimeSpan.FromHours(24), new ImportTaskTimeout());
 
             var csv = new CsvReader(File.OpenText(message.FileLocation));
             var records = csv.GetRecords<ImportTaskRecord>().ToList();
 
-            var customers = records.Select(c => c.CustomerName).Distinct();
-            var projects = records.Select(c => new { Customer = c.CustomerName, Project = c.ProjectName }).Distinct();
+            var customers = records.Select(c => new { Customer = c.CustomerName, Code = c.CustomerCode }).Distinct();
+            var projects = records.Select(c => new { Customer = c.CustomerName, Project = c.ProjectName, ProjectManager = c.ProjectManager }).Distinct();
 
             foreach (var customer in customers)
             {
-                Bus.Send(new ImportCustomer { Name = customer });
+                Bus.Send(new ImportCustomer { Name = customer.Customer, Code=customer.Code });
             }
             foreach (var project in projects)
             {
-                Bus.Send(new ImportProject { CustomerName = project.Customer, ProjectName = project.Project });
+                Bus.Send(new ImportProject { CustomerName = project.Customer, ProjectName = project.Project, ProjectManager= project.ProjectManager });
             }
             foreach (var task in records)
             {
-                Bus.Send(new ImportTask { CustomerName = task.CustomerName, Hours = task.TaskHours, ImportId = this.Data.ImportId, ProjectName = task.ProjectName, TaskName = task.TaskName });
+                Bus.Send(new ImportTask { CustomerName = task.CustomerName, Hours = task.TaskHours, ImportId = message.Id, ProjectName = task.ProjectName, TaskName = task.TaskName });
                 this.Data.ClientsToBeImported++;
             }            
         }
 
-        public void Handle(ITaskImported message)
+        public void Handle(ITaskImportSucceeded message)
         {
             this.Data.ClientsImported++;
         }

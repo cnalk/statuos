@@ -46,6 +46,9 @@
     <Compile Include="ImportProject.cs" />
     <Compile Include="ImportTask.cs" />
     <Compile Include="ImportTasksMessage.cs" />
+    <Compile Include="ITaskImported.cs" />
+    <Compile Include="ITaskImportFailed.cs" />
+    <Compile Include="ITaskImportSucceeded.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

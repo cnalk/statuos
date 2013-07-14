@@ -9,8 +9,10 @@ namespace Statuos.Import.Backend
     public class ImportTaskRecord
     {
         public string CustomerName { get; set; }
+        public string CustomerCode { get; set; }
         public string ProjectName { get; set; }
         public string TaskName { get; set; }
         public decimal TaskHours { get; set; }
+        public string ProjectManager { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace Statuos.Messages
     public class ImportCustomer : ICommand
     {
         public string Name { get; set; }
+        public string Code { get; set; }
     }
 }

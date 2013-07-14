@@ -11,5 +11,6 @@ namespace Statuos.Messages
     {
         public string ProjectName { get; set; }
         public string CustomerName { get; set; }
+        public string ProjectManager { get; set; }
     }
 }
