@@ -12,25 +12,15 @@ namespace Statuos.Import.Backend
 {
     public class ImportProjectHandler : IHandleMessages<ImportProject>
     {
-        public IRepository<Project> ProjectRepository { get; set; }
+        public IStatuosContext Context { get; set; }
         public void Handle(ImportProject message)
         {
-            try
-            {
-                IStatuosContext Context = new StatuosContext();
-                var customer = Context.Customers.Where(c => c.Name == message.CustomerName).FirstOrDefault();
-                var user = Context.Users.Where(u => u.UserName == message.ProjectManager).SingleOrDefault();
-                var project = new BasicProject { CustomerId = customer.Id, Title = message.ProjectName, ProjectManagerId = user.Id };
-                Context.Projects.Add(project);
-                Context.Save();
-                Context.Dispose();
-            }
-            catch (Exception ex)
-            {
-
-                string x = ex.Message;
-
-            }
+            var customer = Context.Customers.Where(c => c.Name == message.CustomerName).FirstOrDefault();
+            var user = Context.Users.Where(u => u.UserName == message.ProjectManager).SingleOrDefault();
+            var project = new BasicProject { CustomerId = customer.Id, Title = message.ProjectName, ProjectManagerId = user.Id };
+            Context.Projects.Add(project);
+            Context.Save();
+            Context.Dispose();
         }
     }
 }

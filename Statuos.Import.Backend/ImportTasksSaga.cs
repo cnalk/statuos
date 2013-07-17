@@ -54,11 +54,19 @@ namespace Statuos.Import.Backend
         public void Handle(ITaskImportSucceeded message)
         {
             this.Data.ClientsImported++;
+            CheckCompleted();
         }
 
         public void Handle(ITaskImportFailed message)
         {
             this.Data.ClientsFailedToImport++;
+            CheckCompleted();
+        }
+
+        private void CheckCompleted()
+        {
+            if (Data.ClientsImported + Data.ClientsFailedToImport == Data.ClientsToBeImported)
+                MarkAsComplete();
         }
 
         public void Timeout(ImportTaskTimeout state)
