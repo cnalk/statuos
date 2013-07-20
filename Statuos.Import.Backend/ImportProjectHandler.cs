@@ -19,8 +19,6 @@ namespace Statuos.Import.Backend
             var user = Context.Users.Where(u => u.UserName == message.ProjectManager).SingleOrDefault();
             var project = new BasicProject { CustomerId = customer.Id, Title = message.ProjectName, ProjectManagerId = user.Id };
             Context.Projects.Add(project);
-            Context.Save();
-            Context.Dispose();
         }
     }
 }

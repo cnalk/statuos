@@ -79,7 +79,7 @@
     <Compile Include="ImportTasksSaga.cs" />
     <Compile Include="ImportTaskTimeout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WindsorInstallers\StatuosContextInstaller.cs" />
+    <Compile Include="StatuosBackendUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -100,6 +100,9 @@
       <Project>{2985f280-7372-458f-aa2d-f6874d8492d8}</Project>
       <Name>Statuos.Messages</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WindsorInstallers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

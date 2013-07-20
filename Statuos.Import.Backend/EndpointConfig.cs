@@ -14,7 +14,12 @@ namespace Statuos.Import.Backend
             _container = new WindsorContainer();
             _container.Install(FromAssembly.This());
             Configure.With()
-                    .CastleWindsorBuilder(_container);    
+                    .CastleWindsorBuilder();
+
+            Configure.Instance.Configurer.
+                      ConfigureComponent<StatuosBackendUnitOfWork>(DependencyLifecycle.InstancePerUnitOfWork);
+            Configure.Instance.Configurer
+                .ConfigureComponent<IStatuosContext>(() => new StatuosContext(), DependencyLifecycle.InstancePerUnitOfWork);
         }
     }
 }

@@ -17,8 +17,6 @@ namespace Statuos.Import.Backend
         public void Handle(ImportCustomer message)
         {            
             Context.Customers.Add(new Customer { Name = message.Name, Code = message.Code });
-            Context.Save();
-            Context.Dispose();
         }
     }
 }
