@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Statuos.Import.Backend
+namespace Statuos.ProjectManagementService
 {
     public class StatuosBackendUnitOfWork : IManageUnitsOfWork
     {
-        public IStatuosContext Context { get; set; }
+        public StatuosContext Context { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(typeof(StatuosBackendUnitOfWork));
         public void Begin()
         {

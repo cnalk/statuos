@@ -10,10 +10,9 @@ using System.Linq;
 
 namespace Statuos.Import.Backend
 {
-    public class ImportTasksSaga : Saga<ImportTaskSagaData>, 
-                                    IAmStartedByMessages<ImportTasksMessage>, 
-                                    IHandleMessages<ITaskImportSucceeded>, 
-                                    IHandleMessages<ITaskImportFailed>, 
+    public class ImportTasksSaga : Saga<ImportTaskSagaData>,
+                                    IAmStartedByMessages<ImportTasksMessage>,
+                                    IHandleMessages<ITaskImportSucceeded>,
                                     IHandleTimeouts<ImportTaskTimeout>
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(ImportTasksSaga));
@@ -21,13 +20,14 @@ namespace Statuos.Import.Backend
         public override void ConfigureHowToFindSaga()
         {
             ConfigureMapping<ITaskImportSucceeded>(s => s.ImportId, m => m.ImportId);
-            ConfigureMapping<ITaskImportFailed>(s => s.ImportId).ToSaga(s => s.ImportId);
         }
 
         public void Handle(ImportTasksMessage message)
         {
+            Logger.Info(string.Format("Beging Import for {0}", message.FileLocation));
+
             Data.ImportId = message.Id;
-            
+
             RequestTimeout(TimeSpan.FromHours(24), new ImportTaskTimeout());
 
             var csv = new CsvReader(File.OpenText(message.FileLocation));
@@ -38,17 +38,18 @@ namespace Statuos.Import.Backend
 
             foreach (var customer in customers)
             {
-                Bus.Send(new ImportCustomer { Name = customer.Customer, Code=customer.Code });
+                Bus.Send(new ImportCustomer { Name = customer.Customer, Code = customer.Code });
             }
             foreach (var project in projects)
             {
-                Bus.Send(new ImportProject { CustomerName = project.Customer, ProjectName = project.Project, ProjectManager= project.ProjectManager });
+                Bus.Send(new ImportProject { CustomerName = project.Customer, ProjectName = project.Project, ProjectManager = project.ProjectManager });
             }
             foreach (var task in records)
             {
-                Bus.Send(new ImportTask { CustomerName = task.CustomerName, Hours = task.TaskHours, ImportId = message.Id, ProjectName = task.ProjectName, TaskName = task.TaskName });
+                Bus.Send(new CreateTask { CustomerName = task.CustomerName, ImportId = message.Id, ProjectName = task.ProjectName, TaskName = task.TaskName });
+                Bus.Send(new ImportTaskHours { CustomerName = task.CustomerName, ImportId = message.Id, ProjectName = task.ProjectName, TaskName = task.TaskName, Hours = task.TaskHours, UserName = task.Employee, DateCharged = task.DateCharged });
                 this.Data.ClientsToBeImported++;
-            }            
+            }
         }
 
         public void Handle(ITaskImportSucceeded message)
@@ -57,21 +58,16 @@ namespace Statuos.Import.Backend
             CheckCompleted();
         }
 
-        public void Handle(ITaskImportFailed message)
-        {
-            this.Data.ClientsFailedToImport++;
-            CheckCompleted();
-        }
 
         private void CheckCompleted()
         {
-            if (Data.ClientsImported + Data.ClientsFailedToImport == Data.ClientsToBeImported)
+            if (Data.ClientsImported == Data.ClientsToBeImported)
                 MarkAsComplete();
         }
 
         public void Timeout(ImportTaskTimeout state)
         {
-            //Check status.  If not all tasks finished record to database.
+            MarkAsComplete();
         }
 
 

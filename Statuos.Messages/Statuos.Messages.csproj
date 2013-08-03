@@ -42,12 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateTaskMessage.cs" />
+    <Compile Include="ImportTaskHours.cs" />
     <Compile Include="ImportCustomer.cs" />
     <Compile Include="ImportProject.cs" />
-    <Compile Include="ImportTask.cs" />
+    <Compile Include="CreateTask.cs" />
     <Compile Include="ImportTasksMessage.cs" />
     <Compile Include="ITaskImported.cs" />
-    <Compile Include="ITaskImportFailed.cs" />
     <Compile Include="ITaskImportSucceeded.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

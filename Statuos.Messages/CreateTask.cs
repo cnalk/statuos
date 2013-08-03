@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Statuos.Messages
 {
-    public class ImportTask : ICommand
+    public class CreateTask : ICommand
     {
         public string CustomerName { get; set; }
         public string ProjectName { get; set; }
         public string TaskName { get; set; }
-        public decimal Hours { get; set; }
         public Guid ImportId { get; set; }
     }
 }

@@ -12,6 +12,5 @@ namespace Statuos.Import.Backend
         public Guid ImportId { get; set; }
         public int ClientsToBeImported { get; set; }
         public int ClientsImported { get; set; }
-        public int ClientsFailedToImport { get; set; }
     }
 }

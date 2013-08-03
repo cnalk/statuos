@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Statuos.Messages
 {
-    public interface ITaskImportFailed : ITaskImportEvent
+    public class CreateTaskMessage
     {
     }
 }

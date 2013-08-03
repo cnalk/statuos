@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4D73409B-7D50-4039-89B5-1BF3581C9F52}</ProjectGuid>
+    <ProjectGuid>{FA9EDB3C-5611-4FFE-926B-D630305E8885}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Statuos.Import.Backend</RootNamespace>
-    <AssemblyName>Statuos.Import.Backend</AssemblyName>
+    <RootNamespace>Statuos.ProjectManagementService</RootNamespace>
+    <AssemblyName>Statuos.ProjectManagementService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,13 +34,10 @@
       <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="CsvHelper">
-      <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\log4net.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
       <HintPath>..\..\..\Program Files (x86)\Particular Software\NServiceBus\v4.0\NServiceBus\Binaries\NServiceBus.dll</HintPath>
@@ -65,30 +62,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateCustomerHandler.cs" />
+    <Compile Include="CreateProjectHandler.cs" />
+    <Compile Include="CreateTaskHandler.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="ImportTaskRecord.cs" />
-    <Compile Include="ImportTaskSagaData.cs" />
-    <Compile Include="ImportTasksSaga.cs" />
-    <Compile Include="ImportTaskTimeout.cs" />
+    <Compile Include="ImportTaskHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
+    <Compile Include="StatuosBackendUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Statous.Domain\Statuos.Domain.csproj">
       <Project>{5c300d04-2415-4ca3-9ce6-869ce18691a7}</Project>
       <Name>Statuos.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Statuos.Data\Statuos.Data.csproj">
+      <Project>{7f372f3d-eba9-47af-9aa4-dd21577df470}</Project>
+      <Name>Statuos.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Statuos.Messages\Statuos.Messages.csproj">
       <Project>{2985f280-7372-458f-aa2d-f6874d8492d8}</Project>
       <Name>Statuos.Messages</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -97,8 +96,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
-  </PropertyGroup>
 </Project>
